@@ -16,7 +16,7 @@ public class Quote {
     private Quote(Quote src) {
         this.customer= src.customer;
         this.laptop= src.laptop;
-        this.services= new ArrayList<>(src.services);
+        this.services= src.services;
     }
 
     public Quote forCustomer(String name) {
