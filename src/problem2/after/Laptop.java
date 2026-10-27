@@ -7,9 +7,9 @@ public class Laptop {
     private final String cpu;
     private final int ramGb, ssdGb;
     private final boolean gpu, backlitKeyboard;
-    private final List<String> accessories = new ArrayList<>();
+    private final List<String> accessories;
 
-    private static class Builder {
+    public static class Builder {
         private final String cpu;
         private int ramGb = 8;
         private int ssdGb = 256;
@@ -63,21 +63,26 @@ public class Laptop {
         }
 
 
-        @Override
-        public String toString() {
-            return "Laptop[cpu=" + cpu
-                    + ", ram=" + ramGb + "GB"
-                    + ", ssd=" + ssdGb+ "GB"
-                    + ", gpu=" + (gpu ? "yes" : "no")
-                    + ", backlit="+ (backlitKeyboard ? "yes" : "no")
-                    + ", accessories=" + accessories + "]";
-        }
-
 
     }
 
     private Laptop(Builder builder) {
+        this.cpu= builder.cpu;
+        this.ramGb= builder.ramGb;
+        this.ssdGb= builder.ssdGb;
+        this.gpu= builder.gpu;
+        this.backlitKeyboard= builder.backlitKeyboard;
+        this.accessories= List.copyOf(builder.accessories);
+    }
 
+    @Override
+    public String toString() {
+        return "Laptop[cpu=" + cpu
+                + ", ram=" + ramGb + "GB"
+                + ", ssd=" + ssdGb+ "GB"
+                + ", gpu=" + (gpu ? "yes" : "no")
+                + ", backlit="+ (backlitKeyboard ? "yes" : "no")
+                + ", accessories=" + accessories + "]";
     }
 
 }
